@@ -3,7 +3,7 @@ import "../styles/index.css";
 
 import { getCollection, getEntry, render } from "astro:content";
 import { name, openGraph } from "spectre:globals";
-import ProfilePicture from "../assets/pfp.png";
+import ProfilePicture from "../assets/foto_perfil_comic.png";
 import Card from "../components/Card.astro";
 import Icon from "../components/Icon.astro";
 import ImageGlow from "../components/ImageGlow.astro";
@@ -56,12 +56,12 @@ const { Content: About } = await render(about!);
 			</ul>
 		</Card>
 		<Card>
-			<h3 class="no-mt">Socials</h3>
+			<h3 class="no-mt">Contacto</h3>
 			<ul class="overview-list">
 				{
 					socials.map((item) => (
 						<li>
-							<a href={item.data.link} class="socials-link">
+							<a href={item.data.link} class="socials-link" target="_blank" rel="noopener noreferrer">
 								<Icon
 									type={item.data.icon.type}
 									name={item.data.icon.name as any}
@@ -87,7 +87,7 @@ const { Content: About } = await render(about!);
 					height={24}
 					class="glow-icon"
 				/>
-				<h2>About me</h2>
+				<h2>Sobre mí</h2>
 			</div>
 			<div class="prose">
 				<About />
@@ -102,7 +102,7 @@ const { Content: About } = await render(about!);
 					height={24}
 					class="glow-icon"
 				/>
-				<h2>Latest Posts</h2>
+			
 			</div>
 			<div class="content-container">
 				{
@@ -134,7 +134,7 @@ const { Content: About } = await render(about!);
 					height={24}
 					class="glow-icon"
 				/>
-				<h2>Latest Projects</h2>
+				<h2>Proyectos Destacados</h2>
 			</div>
 			<div class="content-container">
 				{
@@ -164,7 +164,7 @@ const { Content: About } = await render(about!);
 					height={24}
 					class="glow-icon"
 				/>
-				<h2>Work Experience</h2>
+				<h2>Experiencia Profesional</h2>
 			</div>
 			<div class="work-experience-container">
 				{

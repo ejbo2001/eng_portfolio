@@ -3,9 +3,9 @@
 		"id": 1,
 		"icon": {
 			"type": "lucide",
-			"name": "github"
+			"name": "linkedin"
 		},
-		"text": "GitHub",
-		"link": "https://github.com/louisescher/spectre"
+		"text": "LinkedIn",
+		"link": "https://www.linkedin.com/in/emilio-barrera-mech-life/"
 	}
 ]
