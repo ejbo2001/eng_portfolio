@@ -6,6 +6,25 @@
 			"name": "linkedin"
 		},
 		"text": "LinkedIn",
-		"link": "https://www.linkedin.com/in/emilio-barrera-mech-life/"
+		"link": "https://www.linkedin.com/in/emilio-barrera-mech-life/"		
+	},
+	{
+		"id": 2,
+		"icon": {
+			"type": "lucide",
+			"name": "github"
+		},
+		"text": "GitHub",
+		"link": "https://github.com/ejbo2001"
+	},
+	{
+		"id": 3,
+		"icon": {
+			"type": "lucide",
+			"name": "mail"
+		},
+		"text": "Email: ejbo2001@gmail.com",
+		"link": "mailto:ejbo2001@gmail.com"
 	}
+
 ]

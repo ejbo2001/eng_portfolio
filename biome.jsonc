@@ -37,58 +37,5 @@
 				"organizeImports": "on"
 			}
 		}
-	},
-	"overrides": [
-		{
-			"includes": ["**/*.css"],
-			"linter": {
-				"rules": {
-					"complexity": {
-						"noImportantStyles": "off"
-					}
-				}
-			}
-		},
-		{
-			"includes": ["**/*.ts", "**/*.tsx"],
-			"linter": {
-				"rules": {
-					"style": {
-						"noNonNullAssertion": "off"
-					},
-					"suspicious": {
-						"noExplicitAny": "off",
-						"noAssignInExpressions": "off",
-						"noMisleadingCharacterClass": "off"
-					},
-					"complexity": {
-						"noBannedTypes": "off"
-					},
-					"a11y": {
-						"useKeyWithClickEvents": "off",
-						"noStaticElementInteractions": "off"
-					}
-				}
-			}
-		},
-		{
-			"includes": ["**/*.astro"],
-			"linter": {
-				"rules": {
-					"style": {
-						"useConst": "off",
-						"useImportType": "off",
-						"noNonNullAssertion": "off"
-					},
-					"complexity": {
-						"noImportantStyles": "off"
-					},
-					"correctness": {
-						"noUnusedVariables": "off",
-						"noUnusedImports": "off"
-					}
-				}
-			}
-		}
-	]
+	}
 }
