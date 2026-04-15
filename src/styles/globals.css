@@ -1,10 +1,22 @@
 :root {
+	/* === BRAND COLORS (Colores de Marca) === */
 	--primary: #8c5cf5;
-	/* Needed for some hover effects. This is just the R, G and B values of the hex color above */
 	--primary-rgb: 140, 92, 245;
-	/* Used for links */
 	--primary-light: #a277ff;
 	--primary-lightest: #c2a8fd;
+
+	/* === BACKGROUNDS (Fondos) === */
+	--bg-main: #0b0b0b;
+	--card-bg: #121212;
+
+	/* === TYPOGRAPHY (Textos) === */
+	--text-main: #ffffff;
+	--text-muted: #c7c7c7;
+
+	/* === BORDERS & UI (Bordes y Estructura) === */
+	--border-color: #353535;
+	--card-border: var(--border-color);
+	--card-radius: 0.5rem;
 }
 
 .overview-list {
@@ -55,58 +67,41 @@ main {
 	filter: drop-shadow(0 0 4px var(--primary));
 }
 
+/* === EXPRESSIVE CODE (Estilos del Plugin) === */
 .expressive-code {
 	margin-top: 1rem;
 }
+.expressive-code figure { box-shadow: none !important; }
+.expressive-code figure pre { border-radius: 0 !important; }
+.expressive-code figcaption { border: none !important; border-radius: 0 !important; }
+.expressive-code figcaption::before { border: none !important; }
+.expressive-code span.title:not(.is-terminal span.title) { border-radius: 0 !important; }
+.expressive-code span.title::after { border-top: 1px solid var(--primary) !important; border-bottom: 0 !important; }
+.expressive-code .frame.has-title:not(.is-terminal) figcaption.header { border-radius: 0 !important; }
 
-.expressive-code figure {
-	box-shadow: none !important;
-}
-
-.expressive-code figure pre {
-	border-radius: 0 !important;
-}
-
-.expressive-code figcaption {
-	border: none !important;
-	border-radius: 0 !important;
-}
-
-.expressive-code figcaption::before {
-	border: none !important;
-}
-
-.expressive-code span.title:not(.is-terminal span.title) {
-	border-radius: 0 !important;
-}
-
-.expressive-code span.title::after {
-	border-top: 1px solid var(--primary) !important;
-	border-bottom: 0 !important;
-}
-
-.expressive-code .frame.has-title:not(.is-terminal) figcaption.header {
-	border-radius: 0 !important;
-}
-
+/* === COMPONENT STYLES === */
 .post-container {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	padding: 1rem;
-	border: 1px solid #353535;
-	color: #ffffff;
+	/* Usamos Tokens en lugar de Hexadecimales */
+	border: 1px solid var(--border-color);
+	border-radius: var(--card-radius); /* Consistencia con la Card */
+	color: var(--text-main);
 	text-decoration: none;
 	transition:
 		background-color 0.15s ease,
-		border 0.15s ease;
+		border 0.15s ease,
+		box-shadow 0.15s ease;
 }
 
 .post-container:hover,
 .post-container:focus-visible {
 	background-color: rgba(var(--primary-rgb), 0.125);
 	border: 1px solid var(--primary);
-	color: white;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sutil elevación */
+	color: var(--text-main);
 	text-decoration: none;
 }
 
@@ -125,7 +120,8 @@ main {
 }
 
 .post-date {
-	color: #c7c7c7;
+	/* Usamos Token para texto silenciado */
+	color: var(--text-muted);
 }
 
 .text-glow {
@@ -134,18 +130,25 @@ main {
 }
 
 .block-link {
-	color: white;
+	color: var(--text-main);
 	padding: 0.25rem 0.5rem;
 }
 
 .block-link:hover,
 .block-link:focus-visible {
-	color: white;
+	color: var(--text-main);
 	background-color: var(--primary);
 	text-decoration: none;
 	outline: none;
 }
 
+.content-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+/* === RESPONSIVE DESIGN === */
 @media screen and (max-width: 1380px) {
 	body {
 		padding: 0 2rem;
@@ -166,10 +169,4 @@ main {
 		flex-direction: column;
 		gap: 0.5rem;
 	}
-}
-
-.content-container {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
 }
