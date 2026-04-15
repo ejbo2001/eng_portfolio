@@ -9,6 +9,7 @@ import Icon from "../components/Icon.astro";
 import ImageGlow from "../components/ImageGlow.astro";
 import Layout from "../layouts/Layout.astro";
 
+// 1. OBTENCIÓN DE DATOS
 const [posts, projects, about, workExperience, quickInfo, socials] =
 	await Promise.all([
 		getCollection("posts", (post) => post.data.draft !== true),
@@ -19,7 +20,25 @@ const [posts, projects, about, workExperience, quickInfo, socials] =
 		getCollection("socials"),
 	]);
 
-const { Content: About } = await render(about!);
+// 2. CONTROL DE FLUJO SEGURO (Reemplaza 'about!')
+// Si la colección falla, lanzamos un error explícito en tiempo de compilación.
+if (!about) {
+	throw new Error("[Error Crítico]: No se encontró el documento 'about' en la colección 'other'. Revisa el directorio de contenido.");
+}
+const { Content: About } = await render(about);
+
+// 3. LÓGICA DE PRESENTACIÓN AISLADA
+// Extraemos los "números mágicos" a constantes documentadas.
+const MAX_FEATURED_POSTS = 2;
+const MAX_FEATURED_PROJECTS = 2;
+
+const featuredPosts = posts
+	.sort((a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime())
+	.slice(0, MAX_FEATURED_POSTS);
+
+const featuredProjects = projects
+	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+	.slice(0, MAX_FEATURED_PROJECTS);
 ---
 
 <Layout
@@ -42,9 +61,10 @@ const { Content: About } = await render(about!);
 				{
 					quickInfo.map((info) => (
 						<li>
+							<!-- Se eliminó 'as any'. El tipado debe ser garantizado por el esquema, no evadido aquí -->
 							<Icon
 								type={info.data.icon.type}
-								name={info.data.icon.name as any}
+								name={info.data.icon.name}
 								width={24}
 								height={24}
 								class="glow-icon"
@@ -64,7 +84,7 @@ const { Content: About } = await render(about!);
 							<a href={item.data.link} class="socials-link" target="_blank" rel="noopener noreferrer">
 								<Icon
 									type={item.data.icon.type}
-									name={item.data.icon.name as any}
+									name={item.data.icon.name}
 									width={24}
 									height={24}
 									class="glow-icon"
@@ -102,26 +122,21 @@ const { Content: About } = await render(about!);
 					height={24}
 					class="glow-icon"
 				/>
-			
 			</div>
 			<div class="content-container">
 				{
-					posts
-						.sort(
-							(a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime(),
-						)
-						.slice(0, 2)
-						.map((post) => (
-							<a href={`/blog/${post.id}`} class="post-container">
-								<div class="post-header">
-									<h3>{post.data.title}</h3>
-									<span class="post-date">
-										{post.data.createdAt.toLocaleDateString()}
-									</span>
-								</div>
-								<span>{post.data.description}</span>
-							</a>
-						))
+					// Se itera sobre una lista ya procesada en memoria. HTML limpio.
+					featuredPosts.map((post) => (
+						<a href={`/blog/${post.id}`} class="post-container">
+							<div class="post-header">
+								<h3>{post.data.title}</h3>
+								<span class="post-date">
+									{post.data.createdAt.toLocaleDateString()}
+								</span>
+							</div>
+							<span>{post.data.description}</span>
+						</a>
+					))
 				}
 			</div>
 		</Card>
@@ -138,20 +153,18 @@ const { Content: About } = await render(about!);
 			</div>
 			<div class="content-container">
 				{
-					projects
-						.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-						.slice(0, 2)
-						.map((project) => (
-							<a href={`/projects/${project.id}`} class="post-container">
-								<div class="post-header">
-									<h3>{project.data.title}</h3>
-									<span class="post-date">
-										{project.data.date.toLocaleDateString()}
-									</span>
-								</div>
-								<span>{project.data.description}</span>
-							</a>
-						))
+					// Se itera sobre una lista ya procesada en memoria.
+					featuredProjects.map((project) => (
+						<a href={`/projects/${project.id}`} class="post-container">
+							<div class="post-header">
+								<h3>{project.data.title}</h3>
+								<span class="post-date">
+									{project.data.date.toLocaleDateString()}
+								</span>
+							</div>
+							<span>{project.data.description}</span>
+						</a>
+					))
 				}
 			</div>
 		</Card>
@@ -168,6 +181,8 @@ const { Content: About } = await render(about!);
 			</div>
 			<div class="work-experience-container">
 				{
+					// Nota técnica: reverse() muta el array original. En un escenario con datos reactivos
+					// usaríamos toReversed(), pero al ser renderizado estático de Astro es aceptable.
 					workExperience.reverse().map((entry) => (
 						<div class="work-experience-entry">
 							<span class="work-experience-duration">
