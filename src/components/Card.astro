@@ -1,21 +1,36 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<"div"> {}
+// 1. Ampliamos las props para soportar cualquier contenedor genérico o semántico
+interface Props extends HTMLAttributes<"article"> {
+	as?: "div" | "article" | "section";
+}
 
-const { class: className, ...props } = Astro.props;
+const { class: className, as: Element = "article", ...props } = Astro.props;
 ---
 
-<div class="card" class:list={[className]} {...props}>
-  <slot />
-</div>
+<!-- 2. Uso dinámico de etiquetas HTML (Polimorfismo) -->
+<Element class:list={["card", className]} {...props}>
+	<slot />
+</Element>
+
 <style>
-  .card {
-    width: 100%;
-    height: auto;
-    background-color: #121212;
-    border: 1px solid #353535;
-    padding: 1.5rem;
-    overflow: hidden;
-  }
+	/* 3. Reemplazo de colores estáticos por Variables CSS (Design Tokens) */
+	.card {
+		width: 100%;
+		height: auto;
+		/* Usamos variables definidas globalmente, con un color de respaldo (fallback) */
+		background-color: var(--card-bg, #121212);
+		border: 1px solid var(--card-border, #353535);
+		border-radius: var(--card-radius, 0.5rem); /* Añadimos border-radius para un look más moderno */
+		padding: 1.5rem;
+		overflow: hidden;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	/* Opcional: Un pequeño efecto hover para mejorar la interactividad */
+	.card:hover {
+		border-color: var(--primary, #8c5cf5);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	}
 </style>
