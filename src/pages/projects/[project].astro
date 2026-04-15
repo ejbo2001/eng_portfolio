@@ -24,6 +24,8 @@ export const getStaticPaths = (async () => {
 	}));
 }) satisfies GetStaticPaths;
 
+// Si la colección de proyectos es estricta, render() nunca debería fallar aquí,
+// pero mantenemos la estructura limpia.
 const { Content } = await render(project);
 ---
 
@@ -36,7 +38,8 @@ const { Content } = await render(project);
 	}}
 >
 	<div class="left" slot="left">
-		<Card class="toc-card">
+		<!-- 1. SEMÁNTICA: Usamos 'as="aside"' para contenido lateral relacionado (Info) -->
+		<Card as="aside" class="toc-card">
 			<h2 class="no-mt">Info</h2>
 			<ul class="overview-list">
 				{
@@ -45,9 +48,10 @@ const { Content } = await render(project);
 						return (
 							<li>
 								<Tag href={info.link} class="project-info-item">
+									<!-- 2. SEGURIDAD DE TIPOS: Eliminamos 'as any'. Zod ya garantiza que esto es válido -->
 									<Icon
 										type={info.icon.type}
-										name={info.icon.name as any}
+										name={info.icon.name}
 										width={24}
 										height={24}
 										class="glow-icon"
@@ -61,8 +65,10 @@ const { Content } = await render(project);
 			</ul>
 		</Card>
 	</div>
+	
+	<!-- El contenedor principal del artículo ya tiene la semántica correcta -->
 	<article slot="right" data-pagefind-body>
-		<Card>
+		<Card as="div"> <!-- Usamos 'div' interno porque el contenedor padre ya es un <article> -->
 			<div class="article-header" id="_top" data-pagefind-ignore>
 				{
 					project.data.image && (
@@ -83,14 +89,17 @@ const { Content } = await render(project);
 					</div>
 				</div>
 			</div>
+			
 			<Content />
+			
 			<hr class="end-of-article" />
-			<a href="/projects" class="block-link" data-pagefind-ignore
-				>← Back to projects</a
-			>
+			<a href="/projects" class="block-link" data-pagefind-ignore>
+				← Back to projects
+			</a>
 		</Card>
 	</article>
 </Layout>
+
 <style>
 	.project-info-item {
 		display: flex;
