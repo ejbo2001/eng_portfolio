@@ -1,5 +1,6 @@
 import mdx from '@astrojs/mdx';
-import node from '@astrojs/node';
+// 1. IMPORTAMOS VERCEL EN LUGAR DE NODE
+import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import expressiveCode from 'astro-expressive-code';
@@ -44,12 +45,11 @@ const config = defineConfig({
                     title: 'Projects',
                 },
             },
-            giscus: false, // <-- ¡AQUÍ ESTÁ EL CAMBIO!
+            giscus: false,
         }),
     ],
-    adapter: node({
-        mode: 'standalone',
-    }),
+    // 2. CONFIGURAMOS EL ADAPTADOR PARA VERCEL
+    adapter: vercel(),
 });
 
 export default config;
