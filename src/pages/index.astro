@@ -23,7 +23,9 @@ const [posts, projects, about, workExperience, quickInfo, socials] =
 // 2. CONTROL DE FLUJO SEGURO (Reemplaza 'about!')
 // Si la colección falla, lanzamos un error explícito en tiempo de compilación.
 if (!about) {
-	throw new Error("[Error Crítico]: No se encontró el documento 'about' en la colección 'other'. Revisa el directorio de contenido.");
+	throw new Error(
+		"[Error Crítico]: No se encontró el documento 'about' en la colección 'other'. Revisa el directorio de contenido.",
+	);
 }
 const { Content: About } = await render(about);
 

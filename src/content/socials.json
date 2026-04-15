@@ -6,7 +6,7 @@
 			"name": "linkedin"
 		},
 		"text": "LinkedIn",
-		"link": "https://www.linkedin.com/in/emilio-barrera-mech-life/"		
+		"link": "https://www.linkedin.com/in/emilio-barrera-mech-life/"
 	},
 	{
 		"id": 2,
@@ -26,5 +26,4 @@
 		"text": "Email: ejbo2001@gmail.com",
 		"link": "mailto:ejbo2001@gmail.com"
 	}
-
 ]

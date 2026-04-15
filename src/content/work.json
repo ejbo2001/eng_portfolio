@@ -1,18 +1,17 @@
 [
-  {
-    "id": 1,
-    "duration": "2021 - Presente",
-	"company": "Materias STEM",
-    "title": "Tutor",
-    
-    "description": "Tutoría en materias de ciencias exactas e ingeniería, como matemáticas, física, química, estadística, termodinámica, mecánica de fluidos, resistencia de materiales, transferencia de calor, refrigeración y aire acondicionado, simulación CFD, desarrollando habilidades de comunicación técnica y resolución de problemas complejos."
-  },
-  {
-    "id": 2,
-	"duration": "Junio 2025 - Presente",
-	"company": "ANNSYS Servicios de Ingeniería Mecánica",
-    "title": "Ingeniero Mecánico Jr.",
-    "description": "Diseño y clculo sistemas HVAC (Calentamiento, Refrigeración y Aire Acondicionado), sistemas hidrosanitarios y protección contra incendios. Elaboro especificaciones técnicas aplicando normativas ASHRAE, NFPA, INEN y NEC."
-  }
-  
+	{
+		"id": 1,
+		"duration": "2021 - Presente",
+		"company": "Materias STEM",
+		"title": "Tutor",
+
+		"description": "Tutoría en materias de ciencias exactas e ingeniería, como matemáticas, física, química, estadística, termodinámica, mecánica de fluidos, resistencia de materiales, transferencia de calor, refrigeración y aire acondicionado, simulación CFD, desarrollando habilidades de comunicación técnica y resolución de problemas complejos."
+	},
+	{
+		"id": 2,
+		"duration": "Junio 2025 - Presente",
+		"company": "ANNSYS Servicios de Ingeniería Mecánica",
+		"title": "Ingeniero Mecánico Jr.",
+		"description": "Diseño y clculo sistemas HVAC (Calentamiento, Refrigeración y Aire Acondicionado), sistemas hidrosanitarios y protección contra incendios. Elaboro especificaciones técnicas aplicando normativas ASHRAE, NFPA, INEN y NEC."
+	}
 ]

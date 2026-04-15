@@ -1,26 +1,26 @@
 [
-    {
-        "id": 1,
-        "icon": {
-            "type": "lucide",
-            "name": "calendar-days"
-        },
-        "text": "24 años"
-    },
-    {
-        "id": 2,
-        "icon": {
-            "type": "lucide",
-            "name": "map-pin"
-        },
-        "text": "Quito, Ecuador (Sudamérica)"
-    },
-    {
-        "id": 3,
-        "icon": {
-            "type": "lucide",
-            "name": "languages"
-        },
-        "text": "Español (Nativo) | Inglés (Avanzado - B2) | Alemán (Básico - A2)"
-    }
+	{
+		"id": 1,
+		"icon": {
+			"type": "lucide",
+			"name": "calendar-days"
+		},
+		"text": "24 años"
+	},
+	{
+		"id": 2,
+		"icon": {
+			"type": "lucide",
+			"name": "map-pin"
+		},
+		"text": "Quito, Ecuador (Sudamérica)"
+	},
+	{
+		"id": 3,
+		"icon": {
+			"type": "lucide",
+			"name": "languages"
+		},
+		"text": "Español (Nativo) | Inglés (Avanzado - B2) | Alemán (Básico - A2)"
+	}
 ]
